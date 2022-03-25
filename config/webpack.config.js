@@ -319,6 +319,7 @@ module.exports = function (webpackEnv) {
         shared: path.resolve('src/components/shared'),
         stores: path.resolve('src/stores'),
         assets: path.resolve('src/assets'),
+        styles: path.resolve('src/styles'),
         components: path.resolve('src/components')
       },
       plugins: [

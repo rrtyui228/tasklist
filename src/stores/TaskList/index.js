@@ -1,9 +1,13 @@
-import {makeObservable} from 'mobx';
+// import {makeObservable} from 'mobx';
 
 class TaskList {
   constructor() {
-    makeObservable(this);
+    // makeObservable(this);
   }
+
+  unmount = () => {
+    console.log('unmount');
+  };
 }
 
 export default TaskList;

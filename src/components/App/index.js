@@ -1,25 +1,25 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Provider} from 'mobx-react';
-import TaskListStore from 'stores/TaskList'
+import TaskListStore from 'stores/TaskList';
+import s from './App.module.scss';
+import TasksListComponent from 'components/TasksList';
+import Bubbles from 'components/Bubbles';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+const App = () => {
+  const TaskList = new TaskListStore();
 
-    this.TaskListStore = new TaskListStore();
-  }
+  useEffect(() => () => TaskList.unmount());
 
-  componentWillUnmount() {
-    this.TaskListStore.unmount?.();
-  }
-
-  render() {
-    return (
-      <Provider TaskListStore={this.TaskListStore}>
-        Some components
-      </Provider>
-    );
-  }
-}
+  return (
+    <>
+      <Bubbles />
+      <div className={s.page}>
+        <Provider TaskListStore={TaskList}>
+          <TasksListComponent />
+        </Provider>
+      </div>
+    </>
+  );
+};
 
 export default App;
