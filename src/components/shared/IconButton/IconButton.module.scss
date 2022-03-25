@@ -1,0 +1,25 @@
+@import '../../../styles/variables';
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $black-two;
+
+  @media screen and (max-width: $small-screen) {
+    flex-direction: column;
+  }
+
+  &:hover {
+    cursor: pointer;
+    color: $blue;
+  }
+
+  .icon {
+    margin-right: 10px;
+  }
+
+  .title {
+    font-size: 14px;
+  }
+}

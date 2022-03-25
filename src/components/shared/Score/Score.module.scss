@@ -1,0 +1,35 @@
+@import '../../../styles/variables';
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  background-color: transparent;
+  font-size: 14px;
+  font-weight: bold;
+
+  @media screen and (max-width: $small-screen) {
+    border: none !important;
+  }
+
+  @media screen and (min-width: $small-screen) {
+    width: 40px;
+    height: 30px;
+  }
+
+  &Green {
+    border: solid 1px $green;
+    color: $green;
+  }
+
+  &Yellow {
+    border: solid 1px $yellow;
+    color: $yellow;
+  }
+
+  &Red {
+    border: solid 1px $orange;
+    color: $orange;
+  }
+}
