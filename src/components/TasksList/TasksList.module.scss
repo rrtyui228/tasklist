@@ -1,0 +1,87 @@
+@import '../../styles/variables';
+
+$border-radius: 6px;
+
+.container {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .modal {
+    padding: 1% 2%;
+    border-radius: $border-radius;
+    opacity: 96%;
+    margin-top: 3rem;
+    height: 85%;
+    width: 85%;
+    background-color: $deep-blue;
+    box-shadow: $shadow;
+    overflow: hidden;
+
+    .modalHeader {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .tasksWrapper {
+      height: 90%;
+      padding: 0 2% 1%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  }
+}
+
+.cardContainer {
+  display: grid;
+  padding: 2%;
+  grid-gap: 10px;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 100%;
+  height: 100%;
+  max-height: 15rem;
+  background-color: $light-blue;
+  box-shadow: $shadow;
+  border-radius: $border-radius;
+  color: $gray-one;
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
+
+  .check {
+    grid-column: 1 ;
+    grid-row: 2 ;
+  }
+
+  .title {
+    grid-column: 1 / span 2;
+  }
+
+  .description {
+    grid-column: 3 ;
+    grid-row: 1 / span 2;
+  }
+
+  .doneDate {
+    grid-column: 2 ;
+    grid-row: 2 ;
+  }
+}
+
+.header {
+  color: $white;
+}

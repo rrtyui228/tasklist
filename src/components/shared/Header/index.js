@@ -9,6 +9,8 @@ import {styles, createOverride, Theme} from 'styles';
 const theme = createOverride('MuiAppBar', {
   root: {
     backgroundColor: styles.deepBlue,
+    position: 'relative',
+    zIndex: 1400
   }
 });
 
@@ -16,11 +18,7 @@ const Header = () => {
   return (
     <Theme theme={theme}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar
-          position={'static'}
-          color={'secondary'}
-          enableColorOnDark={true}
-        >
+        <AppBar position={'static'} color={'secondary'}>
           <Toolbar>
             <Typography
               variant={'h6'}

@@ -1,9 +1,13 @@
 // colors
 $deep-gray-blue: #1a1e23;
 $deep-blue: #1c1f2e;
+$light-blue: #3e4878;
+$white: #fff;
+$gray-one: #bdc1c6;
 
 // other
 $bubble-count: 60;
+$shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
 
 :export {
   bubblesCount: $bubble-count;

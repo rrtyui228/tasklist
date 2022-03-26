@@ -8,6 +8,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box !important;
+  font-family: Roboto, sans-serif;
 }
 
 html, body {
@@ -19,6 +20,20 @@ body {
   background: $deep-gray-blue;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $gray-one;
+    border-radius: 10px;
+  }
 }
 
 a {
