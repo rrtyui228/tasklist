@@ -1,0 +1,10 @@
+.rotateIcon {
+  transform: rotate(180deg);
+}
+
+.overflowed {
+  display: -webkit-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-box-orient: vertical;
+}

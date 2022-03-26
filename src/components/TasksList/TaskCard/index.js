@@ -2,50 +2,41 @@ import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import s from '../TasksList.module.scss';
-import {Checkbox, FormControlLabel, Typography, TextField} from '@mui/material';
+import EditableTextField from './EditableTextField';
+import {Checkbox, FormControlLabel, Typography} from '@mui/material';
 
 const TaskCard = ({title, description, doneDate}) => {
-  const [taskTitle, setTitle] = useState(title);
-  const [taskDescription, setDescription] = useState(description);
+  const [done, setDone] = useState(doneDate);
+
+  const setDoneDate = (isChecked) => setDone(isChecked ? new Date().toUTCString() : null);
 
   return (
     <div className={s.cardContainer}>
       <FormControlLabel
-        control={<Checkbox />}
-        label={'Is task completed'}
+        control={<Checkbox/>}
+        label={'Did you make it?'}
         className={cn(s.check, s.header)}
+        checked={!!done}
+        onChange={(event) => setDoneDate(event.target.checked)}
       />
-      <div className={s.title}>
-        <Typography variant={'h5'} className={s.header}>
-          Title
-        </Typography>
-        <TextField
-          fullWidth={true}
-          autoFocus={true}
-          value={taskTitle}
-          variant={'standard'}
-          onChange={(event) => setTitle(event.target.value)}
-        />
-        {taskTitle}
-      </div>
-      <div className={s.description}>
-        <Typography variant={'h5'} className={s.header}>
-          Description
-        </Typography>
-        <TextField
-          fullWidth={true}
-          autoFocus={true}
-          value={taskDescription}
-          variant={'standard'}
-          onChange={(event) => setDescription(event.target.value)}
-        />
-        {taskDescription}
-      </div>
+      <EditableTextField
+        placeholder={'Enter title'}
+        entity={title}
+        header={'Title'}
+        className={s.title}
+      />
+      <EditableTextField
+        placeholder={'Enter description'}
+        entity={description}
+        header={'Description'}
+        className={s.description}
+        rowsCount={7}
+      />
       <div className={s.doneDate}>
         <Typography variant={'h5'} className={s.header}>
           Done date
         </Typography>
-        {doneDate}
+        {done}
       </div>
     </div>
   );

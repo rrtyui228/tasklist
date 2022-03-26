@@ -8,13 +8,13 @@ const Tasks = () => {
     title: 'Its my title and my task!',
     description: 'Desctiption must be some long long long textlong long lon' +
       'g textlong long long textlong long long textlong long long text',
-    doneDate: new Date().toDateString()
+    doneDate: new Date().toUTCString()
   }, {
     id: 2,
     title: 'Its my title and my task!',
     description: 'Desctiption must be some long long long textlong long lon' +
       'g textlong long long textlong long long textlong long long text',
-    doneDate: new Date().toDateString()
+    doneDate: null
   }]);
 
   return (
