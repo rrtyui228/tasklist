@@ -53,7 +53,7 @@ TextField.propTypes = {
 
 TextField.defaultProps = {
   placeholder: 'Enter value',
-  rowsCount: 3
+  rowsCount: 4
 };
 
 export default TextField;

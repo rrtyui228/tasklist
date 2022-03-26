@@ -1,15 +1,15 @@
 import React, {useState} from 'react';
-import s from '../TasksList.module.scss';
-import {Typography} from '@mui/material';
-import {Button} from 'shared';
-import TaskCard from 'components/TasksList/TaskCard';
+import {cloneDeep, isEqual} from 'lodash';
 import {nanoid} from 'nanoid';
+import s from 'components/TasksList/TasksList.module.scss';
+import ModalHeader from 'components/TasksList/Modal/ModalHeader';
+import TasksView from 'components/TasksList/Modal/TasksView';
 
 const Modal = () => {
   const [tasks, setTasks] = useState([]);
 
-  const createTask = () => setTasks([
-    ...tasks,
+  const createTask = () => setTasks((otherTasks) => [
+    ...otherTasks,
     {
       hash: nanoid(),
       title: '',
@@ -29,55 +29,42 @@ const Modal = () => {
       doneDate
     }) => title || description || doneDate);
 
+    if (isEqual(tasks, filledTasks)) {
+      return;
+    }
+
     setTasks(filledTasks);
   };
 
   const setTaskField = (taskHash, [field, fieldValue]) => {
-    const suitableTask = tasks.find(({hash}) => taskHash === hash);
+    const copiedTasks = cloneDeep(tasks);
+    const suitableTask = copiedTasks.find(({hash}) => taskHash === hash);
 
     suitableTask[field] = fieldValue;
 
-    setTasks([...tasks]);
+    if (isEqual(tasks, copiedTasks)) {
+      return;
+    }
+
+    setTasks([...copiedTasks]);
   };
+
+  const deleteTask = (deleteHash) =>
+    setTasks((prevTasks) => prevTasks
+      .filter(({hash}) => deleteHash !== hash));
 
   return (
     <div className={s.container}>
       <div className={s.modal}>
-        <div className={s.modalHeader}>
-          <Typography variant={'h5'} className={s.header}>
-            Your tasks
-          </Typography>
-          <div className={s.buttons}>
-            <Button
-              size={'large'}
-              view={'primary'}
-              onClick={clearEmptyTasks}
-            >
-              Clear empty tasks
-            </Button>
-            <Button
-              variant={'contained'}
-              size={'large'}
-              view={'primary'}
-              onClick={createTask}
-            >
-              Create task
-            </Button>
-          </div>
-        </div>
-        <div className={s.tasksWrapper}>
-          {
-            tasks.map((task) => {
-              return (
-                <TaskCard
-                  key={task.hash}
-                  task={task}
-                  setTaskField={setTaskField}
-                />
-              );
-            })
-          }
-        </div>
+        <ModalHeader
+          create={createTask}
+          clear={clearEmptyTasks}
+        />
+        <TasksView
+          tasks={tasks}
+          setField={setTaskField}
+          deleteTask={deleteTask}
+        />
       </div>
     </div>
   );

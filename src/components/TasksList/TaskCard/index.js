@@ -3,11 +3,17 @@ import PropTypes from 'prop-types';
 import cn from 'classnames';
 import s from '../TasksList.module.scss';
 import EditableTextField from './EditableTextField';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import {Checkbox, FormControlLabel, Typography} from '@mui/material';
 
-const TaskCard = ({task, setTaskField}) => {
-  const {title, description, doneDate, hash} = task;
-
+const TaskCard = ({
+  title,
+  description,
+  doneDate,
+  hash,
+  setTaskField,
+  deleteTask
+}) => {
   const bindedSetField = setTaskField.bind(null, hash);
 
   const setTitle = (title) => bindedSetField(['title', title]);
@@ -23,7 +29,7 @@ const TaskCard = ({task, setTaskField}) => {
     <div className={s.cardContainer}>
       <FormControlLabel
         control={<Checkbox/>}
-        label={'Did you make it?'}
+        label={'Done?'}
         className={cn(s.check, s.header)}
         checked={!!doneDate}
         onChange={(event) => setDoneDate(event.target.checked)}
@@ -34,6 +40,7 @@ const TaskCard = ({task, setTaskField}) => {
         setEntity={setTitle}
         header={'Title'}
         className={s.title}
+        rowsCount={5}
       />
       <EditableTextField
         placeholder={'Enter description'}
@@ -41,30 +48,36 @@ const TaskCard = ({task, setTaskField}) => {
         setEntity={setDescription}
         header={'Description'}
         className={s.description}
-        rowsCount={7}
+        rowsCount={10}
       />
-      <div className={s.doneDate}>
-        <Typography variant={'h5'} className={s.header}>
-          Done date
-        </Typography>
-        {doneDate}
-      </div>
+      {
+        doneDate && (
+          <div className={s.doneDate}>
+            <Typography variant={'h5'} className={s.header}>
+              Done date
+            </Typography>
+            {doneDate}
+          </div>
+        )
+      }
+      <DeleteForeverIcon
+        onClick={() => deleteTask(hash)}
+        className={s.icon}
+      />
     </div>
   );
 };
 
 TaskCard.propTypes = {
-  task: PropTypes.shape({
-    title: PropTypes.string,
-    description: PropTypes.string,
-    hash: PropTypes.string,
-    doneDate: PropTypes.string
-  }),
-  setTaskField: PropTypes.func
+  title: PropTypes.string,
+  description: PropTypes.string,
+  hash: PropTypes.string,
+  doneDate: PropTypes.string,
+  setTaskField: PropTypes.func,
+  deleteTask: PropTypes.func
 };
 
 TaskCard.defaultProps = {
-  task: {},
   description: '',
   doneDate: ''
 };
