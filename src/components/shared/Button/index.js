@@ -9,7 +9,8 @@ const Button = ({
   endIcon,
   startIcon,
   fullWidth,
-  size
+  size,
+  onClick
 }) => {
   return (
     <MaterialButton
@@ -19,6 +20,7 @@ const Button = ({
       endIcon={endIcon}
       fullWidth={fullWidth}
       size={size}
+      onClick={onClick}
     >
       {children}
     </MaterialButton>
@@ -26,6 +28,7 @@ const Button = ({
 };
 
 Button.propTypes = {
+  onClick: PropTypes.func,
   fullWidth: PropTypes.bool,
   startIcon: PropTypes.node,
   endIcon: PropTypes.node,

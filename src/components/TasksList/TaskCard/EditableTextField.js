@@ -4,8 +4,14 @@ import s from '../TasksList.module.scss';
 import {TextField} from 'shared';
 import {Typography} from '@mui/material';
 
-const EditableTextField = ({entity, header, className, placeholder, rowsCount}) => {
-  const [taskEntity, setEntity] = useState(entity);
+const EditableTextField = ({
+  entity,
+  setEntity,
+  header,
+  className,
+  placeholder,
+  rowsCount
+}) => {
   const [isEdit, setIsEdit] = useState(false);
 
   return (
@@ -21,7 +27,7 @@ const EditableTextField = ({entity, header, className, placeholder, rowsCount}) 
         rowsCount={rowsCount}
         placeholder={placeholder}
         isEdit={isEdit}
-        value={taskEntity}
+        value={entity}
         setValue={setEntity}
       />
     </div>
@@ -29,6 +35,7 @@ const EditableTextField = ({entity, header, className, placeholder, rowsCount}) 
 };
 
 EditableTextField.propTypes = {
+  setEntity: PropTypes.func,
   rowsCount: PropTypes.number,
   className: PropTypes.string,
   placeholder: PropTypes.string,

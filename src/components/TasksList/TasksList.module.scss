@@ -27,10 +27,16 @@ $border-radius: 6px;
 
     .modalHeader {
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
       height: 3rem;
       margin-bottom: 1rem;
+
+      .buttons {
+        display: flex;
+        justify-content: space-between;
+        width: 22rem;
+      }
     }
 
     .tasksWrapper {
@@ -57,7 +63,6 @@ $border-radius: 6px;
   box-shadow: $shadow;
   border-radius: $border-radius;
   color: $gray-one;
-  overflow: hidden;
   background: linear-gradient(356deg, rgba(25,22,65,1) 7%, rgba(64,64,112,1) 59%, rgba(106,106,173,1) 87%, rgba(196,228,235,1) 100%);
 
   &:not(:last-child) {

@@ -1,14 +1,23 @@
-import React, {useState} from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import cn from 'classnames';
 import s from '../TasksList.module.scss';
 import EditableTextField from './EditableTextField';
 import {Checkbox, FormControlLabel, Typography} from '@mui/material';
 
-const TaskCard = ({title, description, doneDate}) => {
-  const [done, setDone] = useState(doneDate);
+const TaskCard = ({task, setTaskField}) => {
+  const {title, description, doneDate, hash} = task;
 
-  const setDoneDate = (isChecked) => setDone(isChecked ? new Date().toUTCString() : null);
+  const bindedSetField = setTaskField.bind(null, hash);
+
+  const setTitle = (title) => bindedSetField(['title', title]);
+  const setDescription = (description) => bindedSetField(['description', description]);
+  const setDoneDate = (isChecked) => bindedSetField([
+    'doneDate',
+    isChecked ?
+      new Date().toUTCString() :
+      null
+  ]);
 
   return (
     <div className={s.cardContainer}>
@@ -16,18 +25,20 @@ const TaskCard = ({title, description, doneDate}) => {
         control={<Checkbox/>}
         label={'Did you make it?'}
         className={cn(s.check, s.header)}
-        checked={!!done}
+        checked={!!doneDate}
         onChange={(event) => setDoneDate(event.target.checked)}
       />
       <EditableTextField
         placeholder={'Enter title'}
         entity={title}
+        setEntity={setTitle}
         header={'Title'}
         className={s.title}
       />
       <EditableTextField
         placeholder={'Enter description'}
         entity={description}
+        setEntity={setDescription}
         header={'Description'}
         className={s.description}
         rowsCount={7}
@@ -36,19 +47,24 @@ const TaskCard = ({title, description, doneDate}) => {
         <Typography variant={'h5'} className={s.header}>
           Done date
         </Typography>
-        {done}
+        {doneDate}
       </div>
     </div>
   );
 };
 
 TaskCard.propTypes = {
-  title: PropTypes.string,
-  description: PropTypes.string,
-  doneDate: PropTypes.string
+  task: PropTypes.shape({
+    title: PropTypes.string,
+    description: PropTypes.string,
+    hash: PropTypes.string,
+    doneDate: PropTypes.string
+  }),
+  setTaskField: PropTypes.func
 };
 
 TaskCard.defaultProps = {
+  task: {},
   description: '',
   doneDate: ''
 };
