@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppBar, Box, Toolbar, Typography, Button} from '@mui/material';
+import {AppBar, Box, Toolbar, Typography} from '@mui/material';
 import {styles, createOverride, Theme} from 'styles';
 
 const theme = createOverride('MuiAppBar', {
@@ -14,7 +14,10 @@ const Header = () => {
   return (
     <Theme theme={theme}>
       <Box sx={{ flexGrow: 1 }}>
-        <AppBar position={'static'} color={'secondary'}>
+        <AppBar
+          position={'static'}
+          color={'secondary'}
+        >
           <Toolbar>
             <Typography
               variant={'h6'}
@@ -23,7 +26,6 @@ const Header = () => {
             >
               {'Rrtyui\'s tasks'}
             </Typography>
-            <Button color={'inherit'}>Login</Button>
           </Toolbar>
         </AppBar>
       </Box>

@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import s from '../TasksList.module.scss';
 import {TextField} from 'shared';
 import {Typography} from '@mui/material';
+import cn from 'classnames';
 
 const EditableTextField = ({
   entity,
@@ -16,13 +17,17 @@ const EditableTextField = ({
 
   return (
     <div
-      className={className}
+      className={cn(className, s.textWrapper)}
       onMouseEnter={() => setIsEdit(true)}
       onMouseLeave={() => setIsEdit(false)}
     >
-      <Typography variant={'h5'} className={s.header}>
+      <Typography
+        variant={'h5'}
+        className={s.header}
+      >
         {header}
       </Typography>
+
       <TextField
         rowsCount={rowsCount}
         placeholder={placeholder}

@@ -9,13 +9,13 @@ const Modal = () => {
   const [tasks, setTasks] = useState([]);
 
   const createTask = () => setTasks((otherTasks) => [
-    ...otherTasks,
     {
       hash: nanoid(),
       title: '',
       description: '',
       doneDate: null
-    }
+    },
+    ...otherTasks
   ]);
 
   const clearEmptyTasks = () => {
@@ -60,6 +60,7 @@ const Modal = () => {
           create={createTask}
           clear={clearEmptyTasks}
         />
+
         <TasksView
           tasks={tasks}
           setField={setTaskField}

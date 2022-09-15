@@ -21,7 +21,7 @@ const TaskCard = ({
   const setDoneDate = (isChecked) => bindedSetField([
     'doneDate',
     isChecked ?
-      new Date().toUTCString() :
+      new Date().toLocaleString() :
       null
   ]);
 
@@ -32,8 +32,9 @@ const TaskCard = ({
         label={'Done?'}
         className={cn(s.check, s.header)}
         checked={!!doneDate}
-        onChange={(event) => setDoneDate(event.target.checked)}
+        onChange={({target}) => setDoneDate(target.checked)}
       />
+
       <EditableTextField
         placeholder={'Enter title'}
         entity={title}
@@ -42,6 +43,7 @@ const TaskCard = ({
         className={s.title}
         rowsCount={5}
       />
+
       <EditableTextField
         placeholder={'Enter description'}
         entity={description}
@@ -50,16 +52,19 @@ const TaskCard = ({
         className={s.description}
         rowsCount={10}
       />
+
       {
         doneDate && (
           <div className={s.doneDate}>
             <Typography variant={'h5'} className={s.header}>
               Done date
             </Typography>
+
             {doneDate}
           </div>
         )
       }
+
       <DeleteForeverIcon
         onClick={() => deleteTask(hash)}
         className={s.icon}

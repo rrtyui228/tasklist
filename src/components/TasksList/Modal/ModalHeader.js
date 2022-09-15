@@ -1,15 +1,19 @@
 import React from 'react';
 import s from 'components/TasksList/TasksList.module.scss';
-import {Typography} from '@mui/material';
 import PropTypes from 'prop-types';
+import {Typography} from '@mui/material';
 import {Button} from 'shared';
 
 const ModalHeader = ({clear, create}) => {
   return (
     <div className={s.modalHeader}>
-      <Typography variant={'h5'} className={s.header}>
+      <Typography
+        variant={'h5'}
+        className={s.header}
+      >
         Your tasks
       </Typography>
+
       <div className={s.buttons}>
         <Button
           size={'large'}
@@ -18,6 +22,7 @@ const ModalHeader = ({clear, create}) => {
         >
           Clear empty tasks
         </Button>
+
         <Button
           variant={'contained'}
           size={'large'}

@@ -30,7 +30,7 @@ const TextField = ({
         autoFocus={true}
         value={value}
         variant={'standard'}
-        onChange={(event) => setValue(event.target.value)}
+        onChange={({target}) => setValue(target.value)}
       />
     </Theme>
   ) : (

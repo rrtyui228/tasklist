@@ -7,6 +7,7 @@ const App = () => {
   return (
     <>
       <Bubbles />
+
       <div className={s.page}>
         <TasksListComponent />
       </div>
