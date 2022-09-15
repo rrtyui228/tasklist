@@ -29,7 +29,7 @@ const Modal = () => {
       doneDate
     }) => title || description || doneDate);
 
-    if (isEqual(tasks, filledTasks)) {
+    if (tasks.length === filledTasks.length) {
       return;
     }
 
